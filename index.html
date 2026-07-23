@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Uptick | Motion Ads, Posters & Web Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Modern Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Round Logo Placement */
+        .logo-round {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ffcc00;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-round img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #f8fafc;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Hero Section With Workspace BG */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 40px;
+            background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.92)), 
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #d3ff33, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .hero-motto {
+            color: #ffffff;
+            font-style: italic;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: #ffcc00;
+            color: #0f172a;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.5);
+            background-color: #ffe066;
+        }
+
+        /* About & Founder Section */
+        .about-section {
+            padding: 80px 8% 40px;
+            background-color: #0b1120;
+            text-align: center;
+        }
+
+        .about-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-card h2 {
+            color: #fbfaf5;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .about-card p {
+            color: #cbd5e1;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 8px 18px;
+            border-radius: 20px;
+            background: #0f172a;
+            color: #faf9f7;
+            border: 1px solid #ffcc00;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        
+        .social-btn i {
+            color: #94a3b8; /* Soft Grey Icon */
+            font-size: 14px;
+            margin-right: 8px;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover i {
+            color: #0f172a;
+        }
+
+        .social-btn:hover {
+            background: #ffcc00;
+            color: #0f172a;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 60px 8% 80px;
+            text-align: center;
+            background-color: #0f172a;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #f8fafc;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #ffcc00;
+        }
+
+        .card h3 {
+            color: #ffffff !important;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block; 
+            background: none !important; 
+            padding: 0 !important;
+            box-shadow: none !important;
+         } 
+
+        .card p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .click-hint {
+            display: block;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #ffcc00;
+            font-weight: 600;
+        }
+
+        /* Expandable Link Cards under Services */
+        .dropdown-links {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #334155;
+        }
+
+        .dropdown-links.active {
+            display: block;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 8%;
+            background-color: #0b1120;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            max-width: 350px; 
+            margin: 0 auto;  
+            text-align: center; 
+        }
+
+        .project-info {
+            padding: 25px 20px; /* கார்டுக்குள் சரியான இடைவெளி */
+        }
+
+        .project-card:hover {
+            border-color: #ffcc00;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            color: #f8fafc;
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            color: #cbd5e1;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #0f172a;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+        }
+
+        /* 👇 இந்த CSS-ஐ style டேக்கிற்குள்ள சேர்க்கவும் */
+        .social-btn i {
+            color: #94a3b8; /* Soft Grey Color */
+            font-size: 14px; /* Cute Small Size */
+            margin-right: 8px;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover i {
+            color: #0f172a;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand-container">
+            <div class="logo-round">
+                <img src="c:\Users\melin\Downloads\FB_IMG_1784739987455.jpg" alt="Logo" onerror="this.src='https://via.placeholder.com/100/ffcc00/0f172a?text=BU'">
+            </div>
+            <div class="logo">BRAND UPTICK</div>
+        </div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Elevate Your Visual Identity</h1>
+        <div class="hero-motto">“We build your roots, you bloom to the world”</div>
+        <p>We craft high-converting Motion Ads, stunning Poster Designs, and modern Web Experiences for growing brands.</p>
+        <a href="#work" class="btn">View Our Work</a>
+    </section>
+
+    <!-- About & Founder Section -->
+    <section class="about-section" id="about">
+        <div class="about-card">
+            <h2>About Brand Uptick</h2>
+            <p>Welcome to <strong>Brand Uptick</strong>! Founded by Caroline with a vision to transform brand identities, we specialize in high-converting Motion Ads, Static Social Media Posters, and Dynamic Web Experiences. Connect with us on our official platforms below:</p>
+            
+            
+            <div class="social-links">
+               <a href="https://linkedin.com" target="_blank" class="social-btn">
+               <i class="fa-brands fa-linkedin-in"></i>LinkedIn
+               </a>
+               <a href="https://instagram.com/branduptick" target="_blank" class="social-btn">
+               <i class="fa-brands fa-instagram"></i>Instagram
+               </a>
+               <a href="https://facebook.com/branduptick" target="_blank" class="social-btn">
+               <i class="fa-brands fa-facebook-f"></i>Facebook
+               </a>
+               <a href="https://fiverr.com/branduptick" target="_blank" class="social-btn">
+               <i class="fa-solid fa-f"></i>Fiverr
+               </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section with Interactive Click Dropdown -->
+    <!-- Services Section -->
+    <!-- What We Do Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">What We Do</h2>
+        <div class="grid">
+            
+            <!-- Motion Ads -->
+            <div class="card">
+                <h3>🎬 Motion Ads</h3>
+                <p>Engaging video ads designed for Instagram, Facebook, and TikTok to drive higher conversions.</p>
+                <div style="margin-top: 15px;">
+                    <a href="YOUR_MOTION_ADS_DRIVE_LINK" target="_blank" class="btn" style="padding: 6px 16px; font-size: 13px;">View Drive ↗</a>
+                </div>
+            </div>
+
+            <!-- Static Posters -->
+            <div class="card">
+                <h3>🖼️ Static Posters</h3>
+                <p>Eye-catching posters, banners, and social media posts that demand attention.</p>
+                <div style="margin-top: 15px;">
+                    <a href="YOUR_STATIC_POSTERS_DRIVE_LINK" target="_blank" class="btn" style="padding: 6px 16px; font-size: 13px;">View Drive ↗</a>
+                </div>
+            </div>
+
+            <!-- Web Development -->
+            <div class="card">
+                <h3>💻 Web Development</h3>
+                <p>Fast, responsive, and visually dynamic websites custom-built for business growth.</p>
+                <div style="margin-top: 15px;">
+                    <a href="YOUR_GITHUB_OR_NOTION_LINK" target="_blank" class="btn" style="padding: 6px 16px; font-size: 13px;">All Web Projects ↗</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <!-- Featured Web Projects -->
+    <section class="portfolio" id="work">
+        <h2 class="section-title" style="text-align: center;">Featured Web Projects</h2>
+        <div class="project-card">
+            <div class="project-info">
+                <h3>🍕 Pizza Palace Website</h3>
+                <p>A modern, high-converting restaurant website design featuring responsive layouts and custom visuals.</p>
+                <a href="https://pizza-shop-delta-two.vercel.app/" target="_blank" class="btn" style="padding: 8px 20px; font-size: 14px;">Live Preview 🚀</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Brand Uptick. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript to Handle Card Clicks -->
+    <script>
+        function toggleLinks(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "block") {
+                element.style.display = "none";
+            } else {
+                element.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
