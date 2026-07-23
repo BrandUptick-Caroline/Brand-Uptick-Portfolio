@@ -342,52 +342,59 @@
         }
 
        /* Mobile responsiveness fixes */
-       @media (max-width: 768px) {
-    /* Header layout - லோகோ & மெனு ஒரே வரியில் வர */
-    header, nav {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 10px 15px !important;
-        box-sizing: border-box !important;
-    }
+       /* Mobile */
+@media (max-width:768px){
 
-    /* Logo - கட் ஆகாம ஒரிஜினல் ஷேப்ல இருக்க */
-    header img, nav img, .logo img {
-        height: 40px !important;
-        width: auto !important;
-        max-width: none !important;
-        object-fit: contain !important;
-        display: block !important;
-    }
-
-    /* Brand Name Text Size */
-    .logo-text, header h2, nav span {
-        font-size: 1.1rem !important;
-    }
-
-    /* Menu links - ஒரே வரியில் சின்ன ஃபான்ட்-ல நீட்டா அமர */
-    .nav-links, nav ul {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 8px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        list-style: none !important;
-    }
-
-    .nav-links a, nav ul a {
-        font-size: 12px !important;
-        white-space: nowrap !important;
-        padding: 2px 4px !important;
-    }
-
-    /* Hero Section Text Fix */
-    .hero h1, h1 {
-        font-size: 1.8rem !important;
-        line-height: 1.2 !important;
-    }
+header{
+    padding:12px 20px;
 }
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo img{
+    width:50px;
+    height:50px;
+}
+
+.logo h1{
+    font-size:28px;
+    line-height:1.1;
+}
+
+.mobile-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#0d1730;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:20px 0;
+    gap:18px;
+    z-index:999;
+}
+
+.mobile-menu a{
+    font-size:22px;
+    font-weight:600;
+}
+
+.hero{
+    padding-top:100px;
+}
+}
+
     </style>
 </head>
 <body>
