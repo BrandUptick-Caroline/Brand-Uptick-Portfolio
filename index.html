@@ -340,7 +340,37 @@
         .social-btn:hover i {
             color: #0f172a;
         }
-    
+
+       /* Mobile responsiveness fixes */
+        @media (max-width: 768px) {
+            /* Header layout fixes */
+            header, nav {
+                flex-direction: column !important;
+                gap: 12px !important;
+                text-align: center;
+            }
+
+            /* Logo proportions fix - லோகோ நீளமாகாமல் தடுக்க */
+            header img, nav img, .logo img {
+                width: 50px !important;
+                height: 50px !important;
+                object-fit: contain !important;
+            }
+
+            /* Menu links adjustment */
+            .nav-links, nav ul, nav div {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px !important;
+            }
+
+            /* Text size adjustment for mobile */
+            h1 {
+                font-size: 2.2rem !important;
+                line-height: 1.2 !important;
+            }
+        }
     </style>
 </head>
 <body>
