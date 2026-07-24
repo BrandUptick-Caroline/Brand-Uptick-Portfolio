@@ -15,10 +15,19 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        html {
+            overflow-x: hidden;
+        }
+
         body {
             background-color: #0f172a;
             color: #f8fafc;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
         }
 
         /* Header / Navbar */
@@ -53,6 +62,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .logo-round img {
@@ -66,6 +76,11 @@
             font-weight: 800;
             color: #f8fafc;
             letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
         }
 
         nav a {
@@ -298,15 +313,11 @@
         }
 
         .project-info {
-            padding: 25px 20px; /* கார்டுக்குள் சரியான இடைவெளி */
+            padding: 25px 20px;
         }
 
         .project-card:hover {
             border-color: #ffcc00;
-        }
-
-        .project-info {
-            padding: 25px;
         }
 
         .project-info h3 {
@@ -320,6 +331,97 @@
             margin-bottom: 20px;
         }
 
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 8%;
+            background-color: #0f172a;
+            text-align: center;
+        }
+
+        .contact-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+        }
+
+        .contact-info-card,
+        .contact-form-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-info-card h3,
+        .contact-form-card h3 {
+            color: #f8fafc;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            color: #cbd5e1;
+            font-size: 15px;
+        }
+
+        .contact-detail i {
+            color: #ffcc00;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .contact-form-card label {
+            display: block;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            margin-top: 14px;
+        }
+
+        .contact-form-card label:first-of-type {
+            margin-top: 0;
+        }
+
+        .contact-form-card input,
+        .contact-form-card textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .contact-form-card input:focus,
+        .contact-form-card textarea:focus {
+            outline: none;
+            border-color: #ffcc00;
+        }
+
+        .contact-form-card textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .contact-form-card .btn {
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -329,79 +431,127 @@
             color: #64748b;
         }
 
-        /* 👇 இந்த CSS-ஐ style டேக்கிற்குள்ள சேர்க்கவும் */
-        .social-btn i {
-            color: #94a3b8; /* Soft Grey Color */
-            font-size: 14px; /* Cute Small Size */
-            margin-right: 8px;
-            transition: 0.3s;
+        /* Hamburger button (hidden on desktop) */
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
         }
 
-        .social-btn:hover i {
-            color: #0f172a;
+        /* Mobile responsiveness fixes */
+        @media (max-width: 900px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
         }
 
-       /* Mobile responsiveness fixes */
-        @media (max-width:768px){
+        @media (max-width: 768px) {
 
-        header{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:14px 18px;
-            position:relative;
+            header {
+                padding: 14px 18px;
+                position: fixed;
+            }
+
+            .logo-round {
+                width: 42px;
+                height: 42px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #0d1730;
+                padding: 20px 0;
+                text-align: center;
+                border-bottom: 1px solid #1e293b;
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            nav a {
+                margin: 12px 0;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 110px 20px 50px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero-motto {
+                font-size: 16px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .about-section,
+            .services,
+            .portfolio,
+            .contact-section {
+                padding-left: 6%;
+                padding-right: 6%;
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+
+            .about-card,
+            .contact-info-card,
+            .contact-form-card {
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                max-width: 100%;
+            }
         }
 
-        .brand-container{
-            display:flex;
-            align-items:center;
-            gap:10px;
-        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
 
-        .logo-round img{
-            width:42px;
-            height:42px;
-            border-radius:50%;
-            object-fit:cover;
-        }
+            .logo {
+                font-size: 16px;
+            }
 
-        .logo{
-            font-size:20px;
-            font-weight:800;
-            white-space:nowrap;
-        }
+            .social-links {
+                gap: 10px;
+            }
 
-        nav{
-            display:none;
-        }
-
-        nav.show{
-            display:flex;
-            flex-direction:column;
-            position:absolute;
-            top:70px;
-            left:0;
-            width:100%;
-            background:#0d1730;
-            padding:20px 0;
-            text-align:center;
-        }
-
-        nav.show a{
-            margin:12px 0;
-        }
-
-        .menu-btn{
-            display:block;
-            font-size:28px;
-            background:none;
-            border:none;
-            color:white;
-            cursor:pointer;
-        }
-        }
-        .menu-btn{
-            display:none
+            .social-btn {
+                font-size: 13px;
+                padding: 7px 14px;
+            }
         }
 
     </style>
@@ -412,11 +562,11 @@
     <header>
         <div class="brand-container">
             <div class="logo-round">
-                <img src=FB_IMG_1784739987455.jpg>
+                <img src="FB_IMG_1784739987455.jpg" alt="Brand Uptick logo">
             </div>
             <div class="logo">BRAND UPTICK</div>
         </div>
-        <nav>
+        <nav id="nav">
             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#work">Work</a>
@@ -457,8 +607,6 @@
         </div>
     </section>
 
-    <!-- Services Section with Interactive Click Dropdown -->
-    <!-- Services Section -->
     <!-- What We Do Section -->
     <section class="services" id="services">
         <h2 class="section-title">What We Do</h2>
@@ -494,7 +642,6 @@
         </div>
     </section>
 
-    <!-- Featured Projects Section -->
     <!-- Featured Web Projects -->
     <section class="portfolio" id="work">
         <h2 class="section-title" style="text-align: center;">Featured Web Projects</h2>
@@ -503,6 +650,51 @@
                 <h3>🍕 Pizza Palace Website</h3>
                 <p>A modern, high-converting restaurant website design featuring responsive layouts and custom visuals.</p>
                 <a href="https://pizza-shop-az1ulc7nf-branduptick-9700s-projects.vercel.app/" target="_blank" class="btn" style="padding: 8px 20px; font-size: 14px;">Live Preview 🚀</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info-card">
+                <h3>Contact Details</h3>
+                <div class="contact-detail">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>hello@branduptick.com</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+1 (000) 000-0000</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Available for remote projects worldwide</span>
+                </div>
+                <div class="social-links" style="justify-content: flex-start; margin-top: 25px;">
+                    <a href="https://www.linkedin.com/in/caroline-s-323757411" target="_blank" class="social-btn">
+                        <i class="fa-brands fa-linkedin-in"></i>LinkedIn
+                    </a>
+                    <a href="https://www.instagram.com/brand_uptick?igsh=MW91djMyM2tmNWVocQ==" target="_blank" class="social-btn">
+                        <i class="fa-brands fa-instagram"></i>Instagram
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form-card">
+                <h3>Send a Message</h3>
+                <form id="contactForm" onsubmit="return handleContactSubmit(event)">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
@@ -522,12 +714,24 @@
                 element.style.display = "block";
             }
         }
-        
-    </script>
-        
-    <script>
+
         function toggleMenu(){
-            document.getElementByID("nav").classlist.toggle("show"):        }
+            document.getElementById("nav").classList.toggle("show");
+        }
+
+        function handleContactSubmit(event){
+            event.preventDefault();
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+
+            var subject = encodeURIComponent("New inquiry from " + name);
+            var body = encodeURIComponent(message + "\n\nFrom: " + name + " (" + email + ")");
+
+            window.location.href = "mailto:hello@branduptick.com?subject=" + subject + "&body=" + body;
+            return false;
+        }
+    </script>
 
 </body>
 </html>
