@@ -127,6 +127,7 @@ section[id]{ scroll-margin-top:90px; }
   cursor:pointer;
 }
 .btn-cta:hover{ transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(255,111,145,.5); color:#0B0F14; }
+.btn-cta:disabled{ opacity:.6; cursor:not-allowed; transform:none; box-shadow:none; }
 .btn-outline-cta{
   border:1px solid var(--border);
   color:var(--text-primary);
@@ -370,6 +371,14 @@ section[id]{ scroll-margin-top:90px; }
 }
 .contact-form-card textarea{ resize:vertical; min-height:110px; }
 .contact-form-card .btn-cta{ margin-top:1.4rem; width:100%; justify-content:center; border:none; }
+.form-status{
+  margin-top:1rem; padding:.75rem 1rem; border-radius:10px;
+  font-size:.88rem; font-weight:500; display:none;
+}
+.form-status.show{ display:block; }
+.form-status.success{ background:rgba(179,255,123,0.1); border:1px solid rgba(179,255,123,0.35); color:#c7ffb3; }
+.form-status.error{ background:rgba(255,111,145,0.1); border:1px solid rgba(255,111,145,0.35); color:var(--accent-violet); }
+.honeypot-field{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 
 /* ============ Footer ============ */
 .site-footer{ padding:2rem 0; border-top:1px solid var(--border); color:var(--text-muted); font-size:.9rem; text-align:center; }
@@ -568,7 +577,7 @@ section[id]{ scroll-margin-top:90px; }
       </div>
       <div class="contact-form-card" data-reveal>
         <h3>Send a Message</h3>
-        <form id="contactForm" onsubmit="return handleContactSubmit(event)">
+        <form id="contactForm">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Your name" required>
 
@@ -578,7 +587,14 @@ section[id]{ scroll-margin-top:90px; }
           <label for="message">Message</label>
           <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
 
-          <button type="submit" class="btn-cta">Send Message</button>
+          <!-- honeypot field: real users never fill this in, bots often do -->
+          <div class="honeypot-field" aria-hidden="true">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button type="submit" class="btn-cta" id="submitBtn">Send Message</button>
+          <div class="form-status" id="formStatus"></div>
         </form>
       </div>
     </div>
@@ -656,21 +672,37 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTop.classList.toggle('visible', window.scrollY > 500);
   });
 
+  // ===== Contact form -> mailto =====
+  const CONTACT_EMAIL = 'branduptick@gmail.com';
+
+  const form = document.getElementById('contactForm');
+  const statusEl = document.getElementById('formStatus');
+
+  const showStatus = (msg, type) => {
+    statusEl.textContent = msg;
+    statusEl.className = 'form-status show ' + type;
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // honeypot check — if this hidden field got filled, silently drop it
+    if (form.company.value) return;
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    const subject = encodeURIComponent('New inquiry from ' + name);
+    const body = encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')');
+
+    window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
+
+    showStatus('Opening your email app to send this to us — if nothing opens, email us directly at ' + CONTACT_EMAIL + '.', 'success');
+    form.reset();
+  });
+
 });
-
-// Contact form -> mailto
-function handleContactSubmit(event){
-  event.preventDefault();
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
-
-  const subject = encodeURIComponent('New inquiry from ' + name);
-  const body = encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')');
-
-  window.location.href = 'mailto:hello@branduptick.com?subject=' + subject + '&body=' + body;
-  return false;
-}
 </script>
 </body>
 </html>
